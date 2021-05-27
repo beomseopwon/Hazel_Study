@@ -21,6 +21,9 @@ project "Hazel"      --프로젝트 이름
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")  --생성파일(exe,lib,dll) 경로설정
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}") --obj파일경로 설정
 
+	pchheader "hzpch.h"
+	pchsource "Hazel/src/hzpch.cpp"
+
 	files  --어떤파일을 컴파일 할 것인지?
 	{
 		"%{prj.name}/src/**.h",  -- 프로젝트이름폴더-> src폴더안에있는 모든 헤더파일들
@@ -29,6 +32,7 @@ project "Hazel"      --프로젝트 이름
 
 	includedirs   --추가포함 디렉토리경로 설정
 	{
+		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include"
 	}
 
